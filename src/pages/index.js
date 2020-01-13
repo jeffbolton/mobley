@@ -1,20 +1,71 @@
 import React from "react"
 import { Link } from "gatsby"
+import { Main, Box, Heading, Button, RadioButtonGroup, Select} from 'grommet';
+import { Search } from 'grommet-icons';
+import Layout from '../components/layout'
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+const PriceSelector = () => {
+  const [value, setValue] = React.useState('one');
+  return (
+    <RadioButtonGroup
+      name="doc"
+      options={['90-100', '100+']}
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+    />
+  );
+}
+
+const ToneSelector = () => {
+  const [value, setValue] = React.useState('one');
+  return (
+    <RadioButtonGroup
+      name="doc"
+      options={['Light', 'Dark']}
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+    />
+  );
+}
+
+const ColorSelector = () => {
+  const [value, setValue] = React.useState('medium');
+  return (
+    <Select
+      options={['small', 'medium', 'large']}
+      value={value}
+      onChange={({ option }) => setValue(option)}
+    />
+  );
+}
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <Main>
+      <Heading margin="none">Mobley</Heading>
+        <Box
+          direction="column"
+          pad="medium"
+          width="large"
+          animation="fadeIn"
+          alignSelf="center"
+          border={{ color: 'brand', size: 'large' }}
+        >
+          <Heading level="3">Price</Heading>
+          <PriceSelector />
+
+          <Heading level="3">Tone Selector</Heading>
+          <ToneSelector />
+
+          <Heading level="3">Color</Heading>
+          <ColorSelector />
+          <Button
+            icon={<Search />}
+            label="Search"
+            onClick={() => {}}
+          />
+      </Box>
+    </Main>
   </Layout>
 )
 
